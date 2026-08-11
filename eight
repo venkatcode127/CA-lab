@@ -1,0 +1,37 @@
+LHLD 2000      
+        XCHG           
+
+        LHLD 2002     
+
+        XCHG           
+
+        LXI B,0000     
+
+LOOP:   MOV A,L
+        SUB E
+        MOV L,A
+
+        MOV A,H
+        SBB D
+        MOV H,A
+
+        JC STORE
+
+        INX B
+        JMP LOOP
+
+STORE:  MOV A,L
+        ADD E
+        MOV L,A
+
+        MOV A,H
+        ADC D
+        MOV H,A
+
+        SHLD 2006      
+
+        MOV H,B
+        MOV L,C
+        SHLD 2004      
+
+        HLT
